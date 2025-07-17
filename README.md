@@ -4,7 +4,7 @@
 > Upload a CSV inside your **Gnosis Safe**, sign once, and Railgun shields your treasury and salary list.  
 > **This is a *demo app* intended for UX/UI experimentation. Do not use with main-net funds in production.**
 
-[Live demo](https://shotgunblast.wakeuplabs.io/) · [Proposal thread](#) · Made with ❤️ by [WakeUp Labs](https://wakeuplabs.io)
+[Live demo](https://shotgunblast.wakeuplabs.io/) · Made with ❤️ by [WakeUp Labs](https://wakeuplabs.io)
 
 ---
 
