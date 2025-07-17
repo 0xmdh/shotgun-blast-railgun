@@ -1,30 +1,24 @@
-# Private payment tool
+# SHOTGUN BLAST — Private Payroll **Demo** Safe App
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+> **Privacy-first payroll for Web3 treasuries (prototype).**  
+> Upload a CSV inside your **Gnosis Safe**, sign once, and Railgun shields your treasury and salary list.  
+> **This is a *demo app* intended for UX/UI experimentation. Do not use with main-net funds in production.**
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/maxidhs-projects/v0-private-payment-tool)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/9HYrvuf6ktG)
+[Live demo](https://shotgunblast.wakeuplabs.io/) · [Proposal thread](#) · Made with ❤️ by [WakeUp Labs](https://wakeuplabs.io)
 
-## Overview
+---
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+## What this demo shows
 
-## Deployment
+| Feature | Demo behaviour |
+|---------|----------------|
+| **Safe-native UI** | Runs inside any Gnosis Safe as an iframe App. |
+| **CSV batch import** | Drag-and-drop payroll data or add recipients manually. |
+| **Transparent cost preview** | Displays total amount, Railgun shielding fees (0.25 % + 0.25 %) and gas estimate. |
+| **One-click privacy flow** | Generates a single multisig transaction that *would* shield and fan-out payments (simulated). |
+| **Privacy tiers** | *Basic* (instant) or *Enhanced* (±15 min random delay). |
+| **Live progress tracker** | Simulated deposit → proof generation → unshield payouts. |
+| **Audit receipts** | Downloadable CSV with (mock) tx hashes for accounting tests. |
 
-Your project is live at:
+> **Important:** The on-chain calls are executed only on test networks or within Tenderly simulations. Replace RPC + keys with test credentials.
 
-**[https://vercel.com/maxidhs-projects/v0-private-payment-tool](https://vercel.com/maxidhs-projects/v0-private-payment-tool)**
-
-## Build your app
-
-Continue building your app on:
-
-**[https://v0.dev/chat/projects/9HYrvuf6ktG](https://v0.dev/chat/projects/9HYrvuf6ktG)**
-
-## How It Works
-
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
