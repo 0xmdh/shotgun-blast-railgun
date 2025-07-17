@@ -49,7 +49,7 @@ This repository is **alpha software** — provided “as is”, without warranty
 
 ## 📫 Contact
 
-* x.com: **[@WakeUp_Labs](https://x.com/wakeuplabs)**  
+* x.com: **[@wakeuplabs](https://x.com/wakeuplabs)**  
 * Email: **community@wakeuplabs.io**  
 * Proposal discussion: (forum link TBA)
 
