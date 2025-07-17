@@ -20,5 +20,3 @@
 | **Live progress tracker** | Simulated deposit → proof generation → unshield payouts. |
 | **Audit receipts** | Downloadable CSV with (mock) tx hashes for accounting tests. |
 
-> **Important:** The on-chain calls are executed only on test networks or within Tenderly simulations. Replace RPC + keys with test credentials.
-
