@@ -49,9 +49,8 @@ This repository is **alpha software** — provided “as is”, without warranty
 
 ## 📫 Contact
 
-* x.com: **[@WakeUp_Labs](https://twitter.com/WakeUp_Labs)**  
-* Email: **hello@wakeuplabs.io**  
-* Issues & PRs: <https://github.com/WakeUpLabs/shotgun-blast/issues>  
+* x.com: **[@WakeUp_Labs](https://x.com/wakeuplabs)**  
+* Email: **community@wakeuplabs.io**  
 * Proposal discussion: (forum link TBA)
 
 *Help us bring private payroll to every DAO.* 🚀
