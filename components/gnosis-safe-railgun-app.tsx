@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
 import { Progress } from "@/components/ui/progress"
 import { Alert, AlertDescription } from "@/components/ui/alert"
@@ -57,7 +56,6 @@ export default function GnosisSafeRailgunApp() {
   const [railgunEnabled, setRailgunEnabled] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
   const [processingStep, setProcessingStep] = useState(0)
-  const [selectedToken, setSelectedToken] = useState("USDC")
 
   const [safeTransactions] = useState<SafeTransaction[]>([
     {
@@ -96,12 +94,12 @@ export default function GnosisSafeRailgunApp() {
         const newRecipients: Recipient[] = []
 
         lines.slice(1).forEach((line) => {
-          const [address, amount, name] = line.split(",")
-          if (address && amount) {
+          const [address, amount, token, name] = line.split(",")
+          if (address && amount && token) {
             newRecipients.push({
               address: address.trim(),
               amount: amount.trim(),
-              token: selectedToken,
+              token: token.trim(),
               name: name?.trim() || "",
             })
           }
@@ -142,10 +140,10 @@ export default function GnosisSafeRailgunApp() {
 
   const downloadSampleCSV = () => {
     const csvContent = [
-      "recipient_address,amount,recipient_name",
-      "0x742d35Cc6634C0532925a3b8D4C9db123456789a,2500,Alice Johnson",
-      "0x8ba1f109551bD432803012645Hac987654321b,3200,Bob Smith",
-      "0x9f4cdf013e5b765b469681841Hac456789012c,2800,Carol Davis",
+      "recipient_address,amount,token,recipient_name",
+      "0x742d35Cc6634C0532925a3b8D4C9db123456789a,2500,USDC,Alice Johnson",
+      "0x8ba1f109551bD432803012645Hac987654321b,3200,USDT,Bob Smith",
+      "0x9f4cdf013e5b765b469681841Hac456789012c,2800,DAI,Carol Davis",
     ].join("\n")
 
     const blob = new Blob([csvContent], { type: "text/csv" })
@@ -291,25 +289,11 @@ export default function GnosisSafeRailgunApp() {
                 <FileText className="w-5 h-5 text-green-600" />
                 CSV Airdrop - Batch Payments
               </CardTitle>
-              <CardDescription>Upload a CSV file with recipient addresses and amounts</CardDescription>
+              <CardDescription>Upload a CSV file with recipient addresses, amounts and tokens</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <div>
-                    <Label htmlFor="token-select">Payment Token</Label>
-                    <Select value={selectedToken} onValueChange={setSelectedToken}>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="USDC">USDC</SelectItem>
-                        <SelectItem value="USDT">USDT</SelectItem>
-                        <SelectItem value="DAI">DAI</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
                   <div className="space-y-3">
                     <Label>CSV File Format</Label>
                     <div className="text-sm text-gray-600 space-y-1">
@@ -320,6 +304,9 @@ export default function GnosisSafeRailgunApp() {
                         </li>
                         <li>
                           <code>amount</code> - Token amount (no decimals)
+                        </li>
+                        <li>
+                          <code>token</code> - Payment token (e.g. USDC)
                         </li>
                         <li>
                           <code>recipient_name</code> - Optional name
@@ -366,7 +353,7 @@ export default function GnosisSafeRailgunApp() {
                   Review Batch Payment
                 </CardTitle>
                 <CardDescription>
-                  {recipients.length} recipients • {totalAmount.toLocaleString()} {selectedToken} total
+                  {recipients.length} recipients • {totalAmount.toLocaleString()} total
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -396,7 +383,7 @@ export default function GnosisSafeRailgunApp() {
                   <div>
                     <span className="text-sm text-gray-600">Total Amount:</span>
                     <p className="font-semibold">
-                      {totalAmount.toLocaleString()} {selectedToken}
+                      {totalAmount.toLocaleString()}
                     </p>
                   </div>
                   <div>

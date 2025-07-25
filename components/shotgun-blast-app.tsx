@@ -9,7 +9,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
 import { Progress } from "@/components/ui/progress"
 import { Alert, AlertDescription } from "@/components/ui/alert"
@@ -57,7 +56,6 @@ export default function ShotgunBlastApp() {
   const [railgunEnabled, setRailgunEnabled] = useState(true)
   const [isProcessing, setIsProcessing] = useState(false)
   const [processingStep, setProcessingStep] = useState(0)
-  const [selectedToken, setSelectedToken] = useState("USDC")
   const [connectedSafe, setConnectedSafe] = useState<SafeInfo | null>(null)
 
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -84,13 +82,13 @@ export default function ShotgunBlastApp() {
         const newRecipients: Recipient[] = []
 
         lines.slice(1).forEach((line, index) => {
-          const [address, amount, name] = line.split(",")
-          if (address && amount) {
+          const [address, amount, token, name] = line.split(",")
+          if (address && amount && token) {
             newRecipients.push({
               id: `recipient-${index}`,
               address: address.trim(),
               amount: amount.trim(),
-              token: selectedToken,
+              token: token.trim(),
               name: name?.trim() || "",
             })
           }
@@ -108,7 +106,7 @@ export default function ShotgunBlastApp() {
       id: `recipient-${Date.now()}`,
       address: "",
       amount: "",
-      token: selectedToken,
+      token: "",
       name: "",
     }
     setRecipients([...recipients, newRecipient])
@@ -126,10 +124,10 @@ export default function ShotgunBlastApp() {
 
   const downloadSampleCSV = () => {
     const csvContent = [
-      "recipient_address,amount,recipient_name",
-      "0x742d35Cc6634C0532925a3b8D4C9db123456789a,2500,Alice Johnson",
-      "0x8ba1f109551bD432803012645Hac987654321b,3200,Bob Smith",
-      "0x9f4cdf013e5b765b469681841Hac456789012c,2800,Carol Davis",
+      "recipient_address,amount,token,recipient_name",
+      "0x742d35Cc6634C0532925a3b8D4C9db123456789a,2500,USDC,Alice Johnson",
+      "0x8ba1f109551bD432803012645Hac987654321b,3200,USDT,Bob Smith",
+      "0x9f4cdf013e5b765b469681841Hac456789012c,2800,DAI,Carol Davis",
     ].join("\n")
 
     const blob = new Blob([csvContent], { type: "text/csv" })
@@ -266,7 +264,7 @@ export default function ShotgunBlastApp() {
                       <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-medium text-xs">
                         2
                       </div>
-                      <p>Upload CSV with recipient addresses and amounts</p>
+                      <p>Upload CSV with recipient addresses, amounts and tokens</p>
                     </div>
                     <div className="flex items-start gap-2">
                       <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-medium text-xs">
@@ -344,30 +342,16 @@ export default function ShotgunBlastApp() {
             <CardContent className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <div>
-                    <Label htmlFor="token-select">Payment Token</Label>
-                    <Select value={selectedToken} onValueChange={setSelectedToken}>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="USDC">USDC</SelectItem>
-                        <SelectItem value="USDT">USDT</SelectItem>
-                        <SelectItem value="DAI">DAI</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
                   <div className="space-y-3">
                     <Label>CSV Format</Label>
                     <div className="text-sm text-gray-600 space-y-2">
                       <p>Required columns:</p>
                       <div className="bg-gray-50 p-3 rounded font-mono text-xs">
-                        recipient_address,amount,recipient_name
+                        recipient_address,amount,token,recipient_name
                         <br />
-                        0x742d35...,2500,Alice Johnson
+                        0x742d35...,2500,USDC,Alice Johnson
                         <br />
-                        0x8ba1f1...,3200,Bob Smith
+                        0x8ba1f1...,3200,USDT,Bob Smith
                       </div>
                     </div>
                     <Button variant="outline" size="sm" onClick={downloadSampleCSV}>
@@ -469,10 +453,6 @@ export default function ShotgunBlastApp() {
                   <p className="font-semibold text-lg">
                     {totalAmount.toLocaleString()}
                   </p>
-                </div>
-                <div>
-                  <span className="text-sm text-gray-600">Token:</span>
-                  <p className="font-semibold text-lg">{selectedToken}</p>
                 </div>
                 <div>
                   <span className="text-sm text-gray-600">Safe Balance:</span>
@@ -585,7 +565,7 @@ export default function ShotgunBlastApp() {
                   ) : (
                     <>
                       <strong>Standard Mode:</strong> Transaction will be executed as a normal batch transfer. All
-                      addresses and amounts will be visible on-chain.
+                      addresses, amounts and tokens will be visible on-chain.
                     </>
                   )}
                 </AlertDescription>
