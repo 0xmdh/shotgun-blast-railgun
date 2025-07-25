@@ -189,7 +189,9 @@ export default function ShotgunBlastApp() {
                     Safe Connected
                   </Badge>
                   <div className="text-right text-sm">
-                    <p className="font-medium">${connectedSafe.balance} USDC</p>
+                    <p className="font-medium">
+                      {connectedSafe.balance} USDC
+                    </p>
                     <p className="text-slate-500">
                       {connectedSafe.address.slice(0, 6)}...{connectedSafe.address.slice(-4)}
                     </p>
@@ -464,7 +466,9 @@ export default function ShotgunBlastApp() {
                 </div>
                 <div>
                   <span className="text-sm text-gray-600">Total Amount:</span>
-                  <p className="font-semibold text-lg">${totalAmount.toLocaleString()}</p>
+                  <p className="font-semibold text-lg">
+                    {totalAmount.toLocaleString()}
+                  </p>
                 </div>
                 <div>
                   <span className="text-sm text-gray-600">Token:</span>
@@ -472,7 +476,9 @@ export default function ShotgunBlastApp() {
                 </div>
                 <div>
                   <span className="text-sm text-gray-600">Safe Balance:</span>
-                  <p className="font-semibold text-lg">${connectedSafe?.balance}</p>
+                  <p className="font-semibold text-lg">
+                    {connectedSafe?.balance}
+                  </p>
                 </div>
               </div>
 
@@ -687,7 +693,9 @@ export default function ShotgunBlastApp() {
                   </div>
                   <div>
                     <span className="text-sm text-gray-600">Total Amount:</span>
-                    <p className="font-semibold text-lg">${totalAmount.toLocaleString()}</p>
+                    <p className="font-semibold text-lg">
+                      {totalAmount.toLocaleString()}
+                    </p>
                   </div>
                   <div>
                     <span className="text-sm text-gray-600">Privacy Level:</span>

@@ -299,7 +299,7 @@ export default function RailgunProposal() {
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="text-slate-600">Total Amount:</span>
-                      <p className="font-semibold">${totalAmount.toLocaleString()} USDC</p>
+                      <p className="font-semibold">{totalAmount.toLocaleString()} USDC</p>
                     </div>
                     <div>
                       <span className="text-slate-600">Estimated Gas:</span>

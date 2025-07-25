@@ -261,7 +261,7 @@ export default function GnosisSafeRailgunApp() {
                         <div key={tx.id} className="flex items-center gap-2 text-sm">
                           <CheckCircle className="w-4 h-4 text-green-600" />
                           <span className="text-gray-600">
-                            ${tx.totalAmount.toLocaleString()} to {tx.recipientCount} recipients
+                            {tx.totalAmount.toLocaleString()} to {tx.recipientCount} recipients
                           </span>
                           {tx.railgunEnabled && <Shield className="w-3 h-3 text-purple-600" />}
                         </div>
@@ -366,7 +366,7 @@ export default function GnosisSafeRailgunApp() {
                   Review Batch Payment
                 </CardTitle>
                 <CardDescription>
-                  {recipients.length} recipients • ${totalAmount.toLocaleString()} {selectedToken} total
+                  {recipients.length} recipients • {totalAmount.toLocaleString()} {selectedToken} total
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -396,7 +396,7 @@ export default function GnosisSafeRailgunApp() {
                   <div>
                     <span className="text-sm text-gray-600">Total Amount:</span>
                     <p className="font-semibold">
-                      ${totalAmount.toLocaleString()} {selectedToken}
+                      {totalAmount.toLocaleString()} {selectedToken}
                     </p>
                   </div>
                   <div>
